@@ -19,6 +19,8 @@ The program is structured into focused components:
 This design improves accuracy, maintainability, and extensibility.
 
 ## Project Structure
+
+```text
 gpa-calculator/
 ├── src/
 │   ├── main.cpp
@@ -34,6 +36,7 @@ gpa-calculator/
 ├── CMakeLists.txt
 ├── .gitignore
 └── README.md
+```
 
 
 
@@ -43,4 +46,3 @@ This project uses **CMake** and **C++17**.
 ```bash
 cmake -S . -B build
 cmake --build build
-./build/gpa_calculator
