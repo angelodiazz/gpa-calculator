@@ -36,6 +36,7 @@ gpa-calculator/
 └── README.md
 
 
+
 ## Build & Run
 This project uses **CMake** and **C++17**.
 
