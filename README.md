@@ -1,48 +1,58 @@
-# GPA Calculator (C++)
+# GPA Calculator (C++17)
 
-A C++ application that calculates **weighted and unweighted GPAs (4.0 scale)** using validated user input and **CSV-based file handling**. This project was built to demonstrate clean program structure, defensive input validation, and modular C++ design.
+A high-integrity C++ application designed to calculate weighted and unweighted academic performance metrics. This project emphasizes **Defensive Programming**, **Robust File I/O**, and **Modular Systems Architecture**.
 
-## Features
-- Calculates **unweighted GPA** on a standard **4.0 scale**
-- Supports **weighted GPA** for Honors/AP-style courses
-- **Robust input validation** for credits and letter grades
-- **CSV file import/export** to save and load course data
-- Clear **separation of concerns** across GPA logic, input handling, and file I/O
+---
 
-## Design Overview
-The program is structured into focused components:
-- **GPA calculation logic** is isolated in a dedicated calculator class
-- **Grade parsing and validation** are handled independently
-- **File I/O** is separated using CSV read/write utilities
-- **User input handling** is centralized to prevent invalid data entry
+## 🚀 Key Engineering Features
+* **Data Integrity & Validation**: Implemented a centralized `Input` namespace and `GradeScale` utility to enforce strict data constraints, preventing malformed inputs (e.g., negative credits or invalid grades) from corrupting calculations.
+* **Persistent Storage**: Engineered a custom CSV parser in `CourseFileIO` that supports full data persistence, allowing users to export and import course histories with comprehensive error reporting during the parsing lifecycle.
+* **Weighted Logic Engine**: Developed a flexible calculation engine in `GPACalculator` capable of handling Honors/AP weight distributions with customizable bonuses and GPA caps.
+* **Modular Architecture**: Adhered to a strict **Separation of Concerns (SoC)** model, decoupling the calculation logic from the UI (CLI) and data persistence layers.
 
-This design improves accuracy, maintainability, and extensibility.
+---
 
-## Project Structure
+## 🛡 Security & Defensive Design
+* **Type Safety**: Utilized `std::stod` with comprehensive `try-catch` blocks to handle conversion errors during file ingestion, protecting the application from crashing on malformed external data.
+* **Input Sanitization**: Integrated string normalization logic (`trim` and `toupper`) to sanitize user input before it reaches the core logic, ensuring system resilience against casing and spacing inconsistencies.
+* **State Protection**: Used `const` member functions and pass-by-reference-to-const to ensure memory efficiency and protect internal data states from unintended modification.
 
+---
+
+## 🛠 Tech Stack
+| Category | Technologies |
+| :--- | :--- |
+| **Language** | C++17 |
+| **Data Management** | STL Containers (`std::vector`, `std::unordered_map`) |
+| **Build System** | CMake |
+| **Development Tools** | CLion / Git |
+
+---
+
+## 📂 Project Structure
 ```text
 gpa-calculator/
 ├── src/
-│   ├── main.cpp
-│   ├── GPACalculator.h
-│   ├── GPACalculator.cpp
-│   ├── Course.h
-│   ├── CourseFileIO.h
-│   ├── CourseFileIO.cpp
-│   ├── GradeScale.h
-│   ├── GradeScale.cpp
-│   ├── Input.h
-│   └── Input.cpp
-├── CMakeLists.txt
-├── .gitignore
-└── README.md
+│   ├── main.cpp            # Application Entry Point
+│   ├── GPACalculator.h/cpp # Core GPA Logic & State
+│   ├── Course.h            # Data Models (Structs)
+│   ├── CourseFileIO.h/cpp  # CSV Persistence Layer
+│   ├── GradeScale.h/cpp    # Validation & Normalization Logic
+│   ├── Input.h/cpp         # Defensive User Input Handling
+├── CMakeLists.txt          # Build Configuration
+├── .gitignore              # Version Control Optimization
+
 ```
 
-
-
 ## Build & Run
-This project uses **CMake** and **C++17**.
+Ensure you have CMake 3.10+ and a C++17 compatible compiler installed.
 
-```bash
+1. Configure and Build
+# Generate build files
 cmake -S . -B build
+# Compile the project
 cmake --build build
+
+2.
+# Execute the binary
+./build/gpa_calculator
