@@ -56,7 +56,7 @@ cmake -S . -B build
 cmake --build build
 
 ```
-### 1. Execute the Application
+### 2. Execute the Application
 ```bash
 # Run the binary
 ./build/gpa_calculator
