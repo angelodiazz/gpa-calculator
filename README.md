@@ -44,15 +44,19 @@ gpa-calculator/
 
 ```
 
-## Build & Run
-Ensure you have CMake 3.10+ and a C++17 compatible compiler installed.
+## 🚀 Build & Run
+Ensure you have **CMake 3.10+** and a **C++17** compatible compiler installed.
 
-1. Configure and Build
+### 1. Configure and Build
+```bash
 # Generate build files
 cmake -S . -B build
+
 # Compile the project
 cmake --build build
 
-2.
-# Execute the binary
+```
+### 1. Execute the Application
+```bash
+# Run the binary
 ./build/gpa_calculator
