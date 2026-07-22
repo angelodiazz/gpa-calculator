@@ -1,62 +1,127 @@
-# GPA Calculator (C++17)
+# GPA Calculator
 
-A high-integrity C++ application designed to calculate weighted and unweighted academic performance metrics. This project emphasizes **Defensive Programming**, **Robust File I/O**, and **Modular Systems Architecture**.
+A C++17 command-line application for calculating credit-weighted, weighted, and unweighted GPA values.
 
----
+The project demonstrates modular C++ design, input validation, grade normalization, Standard Template Library containers, and basic CSV persistence.
 
-## 🚀 Key Engineering Features
-* **Data Integrity & Validation**: Implemented a centralized `Input` namespace and `GradeScale` utility to enforce strict data constraints, preventing malformed inputs (e.g., negative credits or invalid grades) from corrupting calculations.
-* **Persistent Storage**: Engineered a custom CSV parser in `CourseFileIO` that supports full data persistence, allowing users to export and import course histories with comprehensive error reporting during the parsing lifecycle.
-* **Weighted Logic Engine**: Developed a flexible calculation engine in `GPACalculator` capable of handling Honors/AP weight distributions with customizable bonuses and GPA caps.
-* **Modular Architecture**: Adhered to a strict **Separation of Concerns (SoC)** model, decoupling the calculation logic from the UI (CLI) and data persistence layers.
+## Features
 
----
+- Add courses interactively
+- Validate course names and credit values
+- Normalize letter grades
+- Convert letter grades to grade points
+- Calculate total attempted credits
+- Calculate unweighted GPA
+- Calculate weighted GPA
+- Apply a configurable weighted-course bonus and GPA cap
+- Save courses to CSV
+- Load courses from CSV
+- Report invalid files and malformed values
 
-## 🛡 Security & Defensive Design
-* **Type Safety**: Utilized `std::stod` with comprehensive `try-catch` blocks to handle conversion errors during file ingestion, protecting the application from crashing on malformed external data.
-* **Input Sanitization**: Integrated string normalization logic (`trim` and `toupper`) to sanitize user input before it reaches the core logic, ensuring system resilience against casing and spacing inconsistencies.
-* **State Protection**: Used `const` member functions and pass-by-reference-to-const to ensure memory efficiency and protect internal data states from unintended modification.
+## Grade Scale
 
----
+The application supports:
 
-## 🛠 Tech Stack
-| Category | Technologies |
-| :--- | :--- |
-| **Language** | C++17 |
-| **Data Management** | STL Containers (`std::vector`, `std::unordered_map`) |
-| **Build System** | CMake |
-| **Development Tools** | CLion / Git |
+```text
+A   A-
+B+  B   B-
+C+  C   C-
+D+  D   D-
+F
+```
 
----
+Letter grades are normalized by:
 
-## 📂 Project Structure
+- Removing surrounding whitespace
+- Removing internal whitespace
+- Converting letters to uppercase
+
+## GPA Calculations
+
+Unweighted GPA is calculated using credit-weighted quality points.
+
+Weighted courses receive a configurable bonus before the configured GPA cap is applied.
+
+The current defaults are:
+
+```text
+Weighted-course bonus: 0.5
+GPA cap: 4.0
+```
+
+These values are defined in `main.cpp` and can be changed for different grading policies.
+
+## CSV Persistence
+
+The CSV format is:
+
+```text
+name,credits,grade,weighted
+```
+
+Example:
+
+```text
+Data Structures,3,A,1
+Discrete Mathematics,3,B+,0
+```
+
+The current parser uses a simple comma-delimited format.
+
+Course names containing commas are not currently supported. A future version could add quoted-field parsing and escaping.
+
+## Technologies
+
+- C++17
+- Standard Template Library
+- `std::vector`
+- `std::unordered_map`
+- File streams
+- String streams
+- CMake
+
+## Project Structure
+
 ```text
 gpa-calculator/
 ├── src/
-│   ├── main.cpp            # Application Entry Point
-│   ├── GPACalculator.h/cpp # Core GPA Logic & State
-│   ├── Course.h            # Data Models (Structs)
-│   ├── CourseFileIO.h/cpp  # CSV Persistence Layer
-│   ├── GradeScale.h/cpp    # Validation & Normalization Logic
-│   ├── Input.h/cpp         # Defensive User Input Handling
-├── CMakeLists.txt          # Build Configuration
-├── .gitignore              # Version Control Optimization
-
+│   ├── main.cpp
+│   ├── Course.h
+│   ├── GPACalculator.h
+│   ├── GPACalculator.cpp
+│   ├── GradeScale.h
+│   ├── GradeScale.cpp
+│   ├── CourseFileIO.h
+│   ├── CourseFileIO.cpp
+│   ├── Input.h
+│   └── Input.cpp
+├── CMakeLists.txt
+├── .gitignore
+└── README.md
 ```
 
-## 🚀 Build & Run
-Ensure you have **CMake 3.10+** and a **C++17** compatible compiler installed.
+## Build
 
-### 1. Configure and Build
+Requirements:
+
+- CMake 3.20 or newer
+- A C++17-compatible compiler
+
 ```bash
-# Generate build files
 cmake -S . -B build
-
-# Compile the project
 cmake --build build
-
 ```
-### 2. Execute the Application
+
+## Run
+
 ```bash
-# Run the binary
 ./build/gpa_calculator
+```
+
+## Current Limitations
+
+- Course names containing commas are not supported by the CSV parser.
+- Loaded courses are not added transactionally if later validation fails.
+- Weighting rules are configured in source code rather than through the interface.
+- Courses cannot currently be edited or removed.
+- The project does not currently include automated tests.
