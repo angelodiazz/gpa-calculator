@@ -117,11 +117,3 @@ cmake --build build
 ```bash
 ./build/gpa_calculator
 ```
-
-## Current Limitations
-
-- Course names containing commas are not supported by the CSV parser.
-- Loaded courses are not added transactionally if later validation fails.
-- Weighting rules are configured in source code rather than through the interface.
-- Courses cannot currently be edited or removed.
-- The project does not currently include automated tests.
