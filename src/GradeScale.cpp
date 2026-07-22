@@ -1,7 +1,6 @@
 #include "GradeScale.h"
-#include "GradeScale.h"
-#include <cctype>
 #include <algorithm>
+#include <cctype>
 #include <unordered_map>
 
 std::string GradeScale::trim(const std::string& s) {

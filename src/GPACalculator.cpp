@@ -1,7 +1,5 @@
 #include "GPACalculator.h"
-#include "GPACalculator.h"
 #include "GradeScale.h"
-#include <limits>
 
 bool GPACalculator::addCourse(const Course& c, std::string& error) {
     if (c.name.empty()) {

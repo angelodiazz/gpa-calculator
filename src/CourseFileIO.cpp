@@ -1,5 +1,4 @@
 #include "CourseFileIO.h"
-#include "CourseFileIO.h"
 #include "GradeScale.h"
 #include <fstream>
 #include <sstream>
